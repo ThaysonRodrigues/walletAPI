@@ -15,7 +15,7 @@
 	<description>API para controle de carteira</description>
 
 	<properties>
-		<java.version>11.4</java.version>
+		<java.version>11</java.version>
 	</properties>
 
 	<dependencies>
@@ -40,6 +40,11 @@
 					<artifactId>junit-vintage-engine</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
 
