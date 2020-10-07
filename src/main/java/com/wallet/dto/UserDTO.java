@@ -5,7 +5,10 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 @SuppressWarnings("deprecation")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDTO {
 	
 	private Long id;
@@ -17,7 +20,7 @@ public class UserDTO {
 	private String name;
 	
 	@NotNull
-	@Length(min = 3, message = "A senha deve conter no mínino 6 caracteres")
+	@Length(min = 6, message = "A senha deve conter no mínino 6 caracteres")
 	private String password;
 	
 	public Long getId() {
