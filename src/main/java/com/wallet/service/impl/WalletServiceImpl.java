@@ -8,7 +8,7 @@ import com.wallet.repository.WalletRepository;
 import com.wallet.service.WalletService;
 
 @Service
-public class WalletImpl implements WalletService {
+public class WalletServiceImpl implements WalletService {
 	
 	@Autowired
 	private WalletRepository repository;

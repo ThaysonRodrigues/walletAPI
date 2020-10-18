@@ -23,6 +23,14 @@ public class Wallet implements Serializable {
 	
 	@NotNull
 	private BigDecimal value;
+	
+	public Wallet() {
+		
+	}
+
+	public Wallet(Long id) {
+		this.id = id;
+	}
 
 	public Long getId() {
 		return id;
