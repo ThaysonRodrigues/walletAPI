@@ -24,6 +24,7 @@ import com.wallet.security.JwtAuthenticationEntryPoint;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
+	@SuppressWarnings("unused")
 	@Autowired
 	private JwtAuthenticationEntryPoint unauthorizedHandler;
 	
@@ -53,7 +54,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().exceptionHandling().and().sessionManagement()
 		.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-		.antMatchers("/auth/**", "/configuration/security", "/webjars/**", "/user/**")
+		.antMatchers("/auth/**", "/configuration/security", "/webjars/**", "/user/**", "/v2/api-docs", "/swagger-resources/**", "/swagger-ui.html/**")
 		.permitAll().anyRequest().authenticated();
 		
 		http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);

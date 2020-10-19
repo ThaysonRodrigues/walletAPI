@@ -7,6 +7,8 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +38,8 @@ public class WalletItemController {
 	@Autowired
 	private WalletItemService service;
 	
+	private static final Logger log = LoggerFactory.getLogger(WalletItemController.class);
+	
 	@PostMapping
 	public ResponseEntity<Response<WalletItemDTO>> create(@Valid @RequestBody WalletItemDTO dto, BindingResult result) {
 		Response<WalletItemDTO> response = new Response<WalletItemDTO>();
@@ -56,7 +60,9 @@ public class WalletItemController {
 	@GetMapping(value = "/type/{wallet}")
 	public ResponseEntity<Response<List<WalletItemDTO>>> findByWalletAndType(@PathVariable("wallet") Long wallet,
 			@RequestParam("type") String type) {
-
+		
+		log.info("Buscando por carteira {} e tipo {}", wallet, type);
+		
 		Response<List<WalletItemDTO>> response = new Response<List<WalletItemDTO>>();
 		List<WalletItem> list = service.findByWalletAndType(wallet, TypeEnum.getEnum(type));
 		
