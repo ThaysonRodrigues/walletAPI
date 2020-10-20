@@ -4,6 +4,9 @@ jdk:
 - oraclejdk8
 before_intall:
 - export TZ=Brazil/East
+install:
+- mvn -N io.takari:maven:wrapper
+- ./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 deploy:
     provider: heroku
     api_key:
