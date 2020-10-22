@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/github/ThaysonRodrigues/walletAPI.svg?branch=master)](https://travis-ci.org/github/ThaysonRodrigues/walletAPI)
+[![Build Status](https://travis-ci.org/ThaysonRodrigues/walletAPI.svg?branch=master)](https://travis-ci.org/ThaysonRodrigues/walletAPI)
 
 # Wallet API
 
