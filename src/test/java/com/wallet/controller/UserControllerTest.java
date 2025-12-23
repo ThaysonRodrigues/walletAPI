@@ -49,7 +49,7 @@ public class UserControllerTest {
 		mvc.perform(MockMvcRequestBuilders.post(URL)
 				.content(getJsonPayload(ID, EMAIL, NAME, PASSWORD))
 				.contentType(MediaType.APPLICATION_JSON)
-				.accept(MediaType.APPLICATION_JSON))
+				.accept(MediaType.APPLICATION_ATOM_XML))
 				.andExpect(status().isCreated())
 				.andExpect(jsonPath("$.data.id").value(ID))
 				.andExpect(jsonPath("$.data.email").value(EMAIL))

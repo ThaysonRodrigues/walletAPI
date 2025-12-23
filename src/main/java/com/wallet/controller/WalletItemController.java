@@ -32,7 +32,7 @@ import com.wallet.response.Response;
 import com.wallet.service.WalletItemService;
 
 @RestController
-@RequestMapping("wallet-item")
+@RequestMapping("/v1/wallet/item")
 public class WalletItemController {
 	
 	@Autowired

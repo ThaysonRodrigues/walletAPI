@@ -7,7 +7,6 @@ import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-@SuppressWarnings("deprecation")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDTO {
 	
