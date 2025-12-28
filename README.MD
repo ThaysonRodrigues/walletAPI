@@ -118,6 +118,17 @@ docker compose ps
 
 ---
 
+## 📘 Documentação da API
+
+A documentação interativa dos endpoints está disponível via **Swagger UI**, onde é possível visualizar, testar e entender todas as rotas da aplicação.
+
+[![Swagger](https://img.shields.io/badge/Swagger-UI-green)](http://localhost:8080/swagger-ui.html)
+
+🔗 Acesse em: **http://localhost:8080/swagger-ui.html**
+
+
+---
+
 ## 🔐 Autenticação
 ### ➕ Criar usuário
 
