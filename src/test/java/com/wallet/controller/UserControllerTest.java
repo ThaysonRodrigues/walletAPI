@@ -33,7 +33,7 @@ public class UserControllerTest {
 	private static final String EMAIL = "teste@teste.com";
 	private static final String NAME = "User Test";
 	private static final String PASSWORD = "123456";
-	private static final String URL = "/user";
+	private static final String URL = "/v1/user";
 	
 	@MockBean
 	private UserService service;
@@ -43,13 +43,12 @@ public class UserControllerTest {
 	
 	@Test
 	public void testSave() throws Exception {
-		
 		BDDMockito.given(service.save(Mockito.any(User.class))).willReturn(getMockUser());
 		
 		mvc.perform(MockMvcRequestBuilders.post(URL)
 				.content(getJsonPayload(ID, EMAIL, NAME, PASSWORD))
 				.contentType(MediaType.APPLICATION_JSON)
-				.accept(MediaType.APPLICATION_ATOM_XML))
+				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isCreated())
 				.andExpect(jsonPath("$.data.id").value(ID))
 				.andExpect(jsonPath("$.data.email").value(EMAIL))

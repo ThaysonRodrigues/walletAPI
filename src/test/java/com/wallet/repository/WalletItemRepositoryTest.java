@@ -17,6 +17,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.wallet.entity.Wallet;
@@ -24,6 +25,7 @@ import com.wallet.entity.WalletItem;
 import com.wallet.enums.TypeEnum;
 
 @RunWith(SpringRunner.class)
+@ActiveProfiles("test")
 @SpringBootTest
 public class WalletItemRepositoryTest {
 
@@ -147,4 +149,3 @@ public class WalletItemRepositoryTest {
 		assertEquals(response.compareTo(BigDecimal.valueOf(215.8)), 0);
 	}
 }
-

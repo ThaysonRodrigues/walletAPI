@@ -1,68 +1,177 @@
-[![Build Status](https://travis-ci.org/ThaysonRodrigues/walletAPI.svg?branch=master)](https://travis-ci.org/ThaysonRodrigues/walletAPI)
+# 💰 Wallet API
 
-# Wallet API
+![Java](https://img.shields.io/badge/Java-8-orange)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-2.3.4-brightgreen)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue)
+![Docker](https://img.shields.io/badge/Docker-Enabled-blue)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
-## Detalhes do projeto
-*Esse projeto possui as seguintes características:*
+API REST para controle de carteira financeira, desenvolvida com **Spring Boot**, **Java 8** e **PostgreSQL**, utilizando boas práticas de arquitetura, segurança e versionamento de banco.
 
-* Projeto criado com Spring Boot e Java 8
-* Banco de dados Postgres com JPA e Spring Data JPA
-* Versionamento de banco de dados com Flyway
-* Testes com JUnit e Mockito com banco H2 em memória
-* Caching com EhCache
-* Nuvem do Heroku
-* Integração contínua com TravisCI
-* Project Lombok
-* Documentação dos endpoints com Swagger
-* Segurança da API com autenticação via tokens JWT 
+---
 
-## Como executar a aplicação
-Certifique-se de ter o Maven instalado e adicionado ao PATH de seu sistema operacional, assim como o Git, crie um banco de dados no postgres e altere o arquivo application.properties informando as credenciais para a aplicação acessar a base de dados, não se preocupe com a criação das tabelas, o flyway se encarregará dessa função.
+## 📘 Trabalho Engineering Software Development
+
+Este trabalho foi desenvolvido com base na construção de um **Test Suite**, com o objetivo de validar o correto funcionamento do microsserviço por meio de testes automatizados.
+
+### 📁 Organização da estrutura de testes
 ```
-git clone https://github.com/vitoralves/walletAPI
+src/test/java
+ └── com.wallet
+     ├── controller
+     │   └── UserControllerTest.java
+     ├── repository
+     │   └── UserRepositoryTest.java
+     |   └── WalletItemRepositoryTest      
+     └── service
+         └── UserServiceTest.java
+         └── WalletItemServiceTest.java
+```
+---
+
+## 📋 Funcionalidades
+
+- ✅ CRUD de usuários
+- 🔐 Autenticação e autorização com **JWT**
+- 🗄️ Persistência com **Spring Data JPA**
+- 🔄 Versionamento de banco com **Flyway**
+- ⚡ Cache com **EhCache**
+- 📄 Documentação automática com **Swagger**
+- 🧪 Testes com **JUnit** e **Mockito**
+- 🐳 Execução local via **Docker + Docker Compose**
+
+---
+
+## 🧱 Tecnologias utilizadas
+
+- Java 8
+- Spring Boot 2.3.4
+- Spring Security
+- Spring Data JPA
+- PostgreSQL
+- Flyway
+- Lombok
+- Swagger (Springfox)
+- EhCache
+- Docker & Docker Compose
+- Maven
+
+---
+
+## 📂 Estrutura do projeto (simplificada)
+
+```text
+root/
+├── docker/
+│   ├── Dockerfile
+│   └── docker-compose.yml
+├── src/
+├── pom.xml
+└── README.md
+```
+
+---
+
+## 🚀 Como executar a aplicação (Docker)
+### 🔧 Pré-requisitos
+
+Antes de começar, você precisa ter instalado na sua máquina:
+
+- ✅ Docker  
+- ✅ Docker Compose  
+- ✅ Git  
+
+---
+
+## 1️⃣ Clonar o repositório
+```
+git clone https://github.com/ThaysonRodrigues/walletAPI.git
 cd walletAPI
-mvn spring-boot:run
-Acesse os endpoints através da url http://localhost:8080
 ```
 
-Também é possível compilar o projeto para executar em um ambiente de produção, para isso execute o seguinte comando na raiz do projeto
+---
 
+## 2️⃣ Acessar a pasta do Docker
 ```
-mvn clean install
+cd docker
 ```
 
-O pacote será gerado dentro da pasta target, basta executá-lo com o comando abaixo, não esquecendo de configurar qual o profile e a porta que a aplicação deverá utilizar.
-Também é necessário criar uma variável de ambiente com as credenciais de acesso ao banco de dados com o nome $DATABASE_URL ou alterar o arquivo application-prod.properties.
+---
 
+## 3️⃣ Buildar e subir a aplicação
 ```
-java -jar -Dspring.profiles.active=prod -Dserver.port=443 walletAPI-0.0.1-SNAPSHOT.jar
+docker compose up -d --build
 ```
-## Como autenticar na API
-Antes de fazer requisições nos endpoint você deve estar autenticado, antes crie um usuário através de uma requisição POST na rota */user* como no exemplo abaixo:
 
+📌 **Esse comando irá:**
+- Buildar a aplicação Java via Dockerfile
+- Subir o PostgreSQL
+- Subir a Wallet API
+- Executar as migrations automaticamente com Flyway  
+
+---
+
+## 4️⃣ Verificar containers em execução
 ```
+docker compose ps
+```
+
+---
+
+## 🔐 Autenticação
+### ➕ Criar usuário
+
+**Endpoint:**
+```http
+POST /v1/user
 {
-	"name": "Heroku User",
-	"email": "user@heroku.com",
-	"password": "123456"
+  "name": "Usuário Teste",
+  "email": "user@email.com",
+  "password": "123456"
 }
 ```
 
-Agora você pode autenticar na API e obter um token de acesso através do endpoint */auth*, utilizando o email e a senha cadastrados:
+---
 
-```
+## 🔑 Autenticar e obter token JWT
+**Endpoint:**
+```http
+POST /v1/auth
 {
-	"email": "user@heroku.com",
-	"password":"123456"
+  "email": "user@email.com",
+  "password": "123456"
 }
 ```
+📌 **O token retornado deve ser enviado no header:**
 
-Você receberá um token do tipo Bearer que deve ser enviado no cabeçalho das requisições.
-### Como executar os testes
-Os testes podem ser executados com o seguinte comando:
+```http
+Authorization: Bearer <seu_token_jwt>
+```
 
+---
+
+## 🧪 Executar testes
 ```
 mvn test
 ```
-### Documentação
-Utilize a interface do Swagger para ter acesso a documentação dos endpoints, ela está disponível na url http://localhost:8080/swagger-ui.html
+
+---
+
+## 🛑 Parar a aplicação
+```
+docker compose down
+```
+
+---
+
+## 🧹 Limpar containers, imagens e volumes (opcional)
+```
+docker compose down -v --rmi all
+```
+
+---
+
+## 📝 Observações importantes
+- As credenciais de banco são configuradas via variáveis de ambiente no `docker-compose.yml`
+- O Flyway é responsável pela criação e versionamento das tabelas
+- A aplicação roda com usuário **não-root** dentro do container (boa prática de segurança)
